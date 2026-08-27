@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mir Sufiyan Ali — Data Analyst</title>
+<meta name="description" content="Portfolio of a data analyst who grounds every finding in statistical testing before it reaches a dashboard — projects in retail, healthcare, banking, and e-commerce.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+<style>
+  :root{
+    --bg:#0A0A0A;
+    --surface:#1A1A1A;
+    --surface-2:#232323;
+    --heading:#F5F5F5;
+    --body:#8F8F8F;
+    --prose:#CFCFCF;
+    --accent:#E8E8EC;
+    --accent-dark:#B4B4BA;
+    --accent-soft:#C7C7CE;
+    --border:#333333;
+
+    --glass-bg:rgba(255,255,255,0.055);
+    --glass-bg-strong:rgba(255,255,255,0.09);
+    --glass-border:rgba(255,255,255,0.14);
+    --glass-highlight:rgba(255,255,255,0.3);
+
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    
+    /* critically damped by default; reserve the bounce variant for momentum-driven moments */
+    --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  @media (prefers-reduced-transparency: reduce){
+    header.nav, nav.links, .kpi-strip, .kpi, .ledger, .skill-card, .project-card, .edu-card, .contact, .chip, .btn-outline{
+      background:var(--surface) !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+      border-color:var(--border) !important; box-shadow:none !important;
+    }
+  }
+  @media (prefers-contrast: more){
+    .project-card, .skill-card, .edu-card, .kpi, .contact, .chip, .stack-tag{border-color:var(--prose) !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--body);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    --mx:0px; --my:0px;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:-40px;
+    pointer-events:none;
+    z-index:0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.08;
+    transform:translate(calc(var(--mx) * -1), calc(var(--my) * -1));
+    transition:transform .3s ease-out;
+  }
+
+  body::after{
+    content:"";
+    position:fixed;
+    inset:-10%;
+    pointer-events:none;
+    z-index:0;
+    background-image:
+      radial-gradient(1100px circle at 12% -8%, rgba(255,255,255,0.09), transparent 55%),
+      radial-gradient(900px circle at 92% 8%, rgba(255,255,255,0.06), transparent 50%),
+      radial-gradient(1000px circle at 50% 105%, rgba(255,255,255,0.05), transparent 55%);
+    animation:meshDrift 24s ease-in-out infinite alternate;
+  }
+  @keyframes meshDrift{
+    0%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-2%,1.5%) scale(1.04);}
+    100%{transform:translate(1.5%,-1%) scale(1.02);}
+  }
+
+  #scrollProgress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:linear-gradient(90deg, var(--accent-dark), var(--accent));
+    z-index:60; pointer-events:none;
+  }
+
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .load-in{opacity:0; animation:riseIn .7s var(--ease-spring) forwards;}
+  .load-in.d1{animation-delay:.05s;}
+  .load-in.d2{animation-delay:.15s;}
+  .load-in.d3{animation-delay:.28s;}
+  .load-in.d4{animation-delay:.4s;}
+  .load-in.d5{animation-delay:.55s;}
+  .load-in.d6{animation-delay:.7s;}
+
+  @keyframes pulseDot{
+    0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(232,232,236,.5);}
+    50%{opacity:.55; box-shadow:0 0 0 4px rgba(232,232,236,0);}
+  }
+  .status-dot{
+    display:inline-block; width:6px; height:6px; border-radius:50%;
+    background:var(--accent); margin-right:8px; vertical-align:middle;
+    animation:pulseDot 2.2s ease-in-out infinite;
+  }
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    color:var(--heading);
+    font-weight:600;
+    margin:0;
+    text-wrap:balance;
+  }
+
+  a{color:inherit;}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--accent-soft);
+  }
+
+  .mono{font-family:var(--font-mono);}
+  .tabular{font-variant-numeric:tabular-nums;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:var(--glass-bg-strong);
+    backdrop-filter:blur(28px) saturate(180%);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    border-bottom:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight), 0 16px 32px -20px rgba(0,0,0,0.7);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  .logo{
+    position:relative;
+    font-family:var(--font-mono);
+    font-weight:600;
+    color:var(--heading);
+    letter-spacing:0.02em;
+    text-decoration:none;
+    font-size:0.95rem;
+  }
+  .logo::before{content:""; position:absolute; top:-16px; bottom:-16px; left:-8px; right:-8px;}
+  .logo .dot{color:var(--accent);}
+  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  nav.links a{
+    position:relative;
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--body);
+    transition:color .15s ease;
+    padding:10px 4px;
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute; left:2px; right:2px; bottom:-2px;
+    height:1px; background:var(--accent);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .25s ease;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--heading);}
+  nav.links a:hover::after, nav.links a:focus-visible::after{transform:scaleX(1);}
+  nav.links a:focus-visible{outline:1px solid var(--accent); outline-offset:4px;}
+
+  .menu-btn{
+    display:none;
+    font-family:var(--font-mono);
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--heading);
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    padding:11px 14px;
+    cursor:pointer;
+  }
+  .menu-btn:focus-visible{outline:1px solid var(--accent); outline-offset:2px;}
+
+  @media (max-width: 720px){
+    nav.links{
+      position:absolute; top:60px; left:0; right:0;
+      /* near-opaque: a translucent dropdown here let bright hero/KPI text
+         underneath show through and visually collide with the menu labels */
+      background:rgba(8,8,8,0.98);
+      backdrop-filter:blur(28px) saturate(180%);
+      -webkit-backdrop-filter:blur(28px) saturate(180%);
+      border-bottom:1px solid var(--glass-border);
+      box-shadow:0 24px 48px -20px rgba(0,0,0,0.85);
+      flex-direction:column; gap:0;
+      max-height:calc(100vh - 60px);
+      overflow-y:auto;
+      transform-origin:top;
+      transform:scaleY(0.92) translateY(-6px);
+      opacity:0;
+      pointer-events:none;
+      transition:transform .32s var(--ease-spring), opacity .22s ease;
+    }
+    nav.links.open{transform:scaleY(1) translateY(0); opacity:1; pointer-events:auto;}
+    nav.links a{padding:16px 28px; border-top:1px solid var(--border); width:100%;}
+    .menu-btn{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:96px 0 64px; position:relative; overflow:hidden;}
+  .spotlight{
+    position:absolute; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(480px circle at var(--sx,50%) var(--sy,0%), rgba(232,232,236,0.10), transparent 60%);
+    opacity:0; transition:opacity .4s ease;
+  }
+  .spotlight.active{opacity:1;}
+  .hero .wrap{position:relative; z-index:1;}
+  .hero .eyebrow{margin-bottom:18px; display:block;}
+  .hero h1{font-size:clamp(2.4rem, 6vw, 4.2rem); line-height:1.05; letter-spacing:-0.015em;}
+  .hero .role{
+    font-family:var(--font-mono);
+    color:var(--accent-soft);
+    font-size:1rem;
+    margin-top:14px;
+    display:block;
+  }
+  .hero .tagline{
+    max-width:580px;
+    margin-top:22px;
+    font-size:1.18rem;
+    line-height:1.7;
+    color:var(--prose);
+  }
+  .hero .tagline strong{color:var(--heading); font-weight:500;}
+
+  .query-line{
+    margin-top:32px;
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--accent-soft);
+    min-height:1.4em;
+    white-space:pre;
+    max-width:100%;
+  }
+  @media (max-width:560px){
+    /* the full SQL line no longer fits on one row at phone widths;
+       wrap instead of letting the hero's overflow:hidden clip it */
+    .query-line{white-space:normal; word-break:break-word; font-size:0.78rem; line-height:1.6;}
+  }
+  .query-line .caret{
+    display:inline-block; width:7px; height:1em; background:var(--accent);
+    margin-left:2px; vertical-align:text-bottom;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .cta-row{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:13px 24px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, color .15s ease, transform .28s var(--ease-spring), box-shadow .28s var(--ease-spring);
+    display:inline-block;
+  }
+  .btn-solid{background:var(--accent); color:#0A0A0A; font-weight:600; box-shadow:0 0 0 0 rgba(232,232,236,.3);}
+  .btn-solid:hover{background:var(--accent-dark); color:#0A0A0A; transform:translateY(-3px) scale(1.03); box-shadow:0 10px 24px -6px rgba(232,232,236,.3);}
+  .btn-outline{
+    background:var(--glass-bg);
+    backdrop-filter:blur(12px) saturate(160%);
+    -webkit-backdrop-filter:blur(12px) saturate(160%);
+    border-color:var(--glass-border); color:var(--heading);
+  }
+  .btn-outline:hover{border-color:var(--accent); color:var(--accent-soft); background:var(--glass-bg-strong); transform:translateY(-3px) scale(1.03);}
+  .btn:active{transform:scale(0.96); transition-duration:.1s;}
+  .btn:focus-visible{outline:1px solid var(--accent); outline-offset:3px;}
+
+  /* KPI strip */
+  .kpi-strip{
+    margin-top:64px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight);
+  }
+  .kpi{
+    padding:22px 20px;
+    border-right:1px solid var(--glass-border);
+    transition:box-shadow .3s var(--ease-spring), transform .3s var(--ease-spring), background .2s ease;
+  }
+  .kpi:last-child{border-right:none;}
+  .kpi:hover{box-shadow:inset 0 2px 0 var(--accent); transform:translateY(-5px) scale(1.02); background:var(--glass-bg-strong);}
+  .kpi:active{transform:translateY(-1px) scale(0.98); transition-duration:.1s;}
+  .kpi .num{
+    font-family:var(--font-mono);
+    color:var(--heading);
+    font-size:1.7rem;
+    font-weight:600;
+  }
+  .kpi .label{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--body);
+    margin-top:6px;
+  }
+  @media (max-width:640px){
+    .kpi-strip{grid-template-columns:repeat(2,1fr);}
+    .kpi{border-bottom:1px solid var(--glass-border);}
+  }
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:88px 0; border-top:1px solid var(--border);}
+  .section-head{margin-bottom:44px; max-width:640px;}
+  .section-head h2{font-size:clamp(1.6rem, 3.4vw, 2.2rem); margin-top:10px; letter-spacing:-0.01em;}
+  .section-head p{margin-top:14px; color:var(--prose); font-size:1.05rem; line-height:1.7;}
+
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s var(--ease-spring);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  .about-grid p{font-size:1.1rem; line-height:1.75; color:var(--prose);}
+  .about-grid p + p{margin-top:18px;}
+  .ledger{
+    border:1px solid var(--glass-border);
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    box-shadow:inset 0 1px 0 var(--glass-highlight);
+  }
+  .ledger-row{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 18px;
+    border-bottom:1px solid var(--glass-border);
+    font-size:0.88rem;
+  }
+  .ledger-row:last-child{border-bottom:none;}
+  .ledger-row .k{font-family:var(--font-mono); color:var(--body); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;}
+  .ledger-row .v{color:var(--heading); text-align:right;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--glass-border); border:1px solid var(--glass-border); overflow:hidden;}
+  .skill-card{
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    padding:26px 26px 22px;
+    transition:background .25s ease;
+  }
+  .skill-card:hover{background:var(--glass-bg-strong);}
+  .skill-card h3{font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent-soft); font-weight:600;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .chip{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    color:var(--heading);
+    border:1px solid var(--glass-border);
+    background:var(--glass-bg-strong);
+    backdrop-filter:blur(8px) saturate(160%);
+    -webkit-backdrop-filter:blur(8px) saturate(160%);
+    padding:6px 11px;
+    transition:border-color .15s ease, color .15s ease, transform .25s var(--ease-spring);
+  }
+  .chip:hover{border-color:var(--accent); color:var(--accent-soft); transform:translateY(-3px) scale(1.06);}
+  .chip:active{transform:translateY(0) scale(0.95); transition-duration:.1s;}
+  @media (max-width:640px){.skill-grid{grid-template-columns:1fr;}}
+
+  /* ---------- PROJECTS ---------- */
+  .project-card{
+    position:relative;
+    background-color:var(--glass-bg);
+    background-image:linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.10) 50%, transparent 65%);
+    background-size:250% 250%;
+    background-position:-120% -120%;
+    backdrop-filter:blur(24px) saturate(160%);
+    -webkit-backdrop-filter:blur(24px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight);
+    margin-bottom:24px;
+    transition:transform .32s var(--ease-spring), border-color .25s ease, box-shadow .32s var(--ease-spring), background-color .25s ease, background-position .9s ease;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, var(--accent), var(--accent-soft));
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .35s ease;
+  }
+  .project-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(232,232,236,0.35);
+    background-color:var(--glass-bg-strong);
+    background-position:120% 120%;
+    box-shadow:inset 0 1px 0 var(--glass-highlight), 0 16px 32px -18px rgba(0,0,0,.6);
+  }
+  .project-card:hover::before{transform:scaleX(1);}
+  .project-head{
+    padding:20px 26px;
+    border-bottom:1px solid var(--glass-border);
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .project-head .file-id{font-family:var(--font-mono); font-size:0.72rem; color:var(--accent-soft); letter-spacing:0.08em;}
+  .project-head h3{font-size:1.35rem; margin-top:4px;}
+  .project-body{padding:24px 26px 26px;}
+  .field{margin-bottom:16px;}
+  .field:last-of-type{margin-bottom:0;}
+  .field .k{font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--body); margin-bottom:6px;}
+  .field .v{color:var(--heading); font-size:0.94rem;}
+  .field .v.finding{color:var(--accent-soft);}
+  .project-foot{
+    display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+    margin-top:22px; padding-top:20px; border-top:1px solid var(--glass-border);
+  }
+  .stack-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .stack-tag{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    font-weight:500;
+    letter-spacing:0.02em;
+    color:var(--prose);
+    border:1px solid rgba(255,255,255,0.22);
+    background:var(--glass-bg-strong);
+    backdrop-filter:blur(8px) saturate(160%);
+    -webkit-backdrop-filter:blur(8px) saturate(160%);
+    padding:6px 10px;
+  }
+  .repo-link{
+    position:relative;
+    display:inline-block;
+    font-family:var(--font-mono); font-size:0.76rem; text-decoration:none; color:var(--heading);
+    border-bottom:1px solid var(--accent); padding-bottom:2px; white-space:nowrap;
+    transition:color .15s ease, transform .15s ease;
+  }
+  .repo-link:hover{color:var(--accent-soft); transform:translateX(3px);}
+  .repo-link:active{transform:translateX(1px) scale(0.97); transition-duration:.1s;}
+  .repo-link:focus-visible{outline:1px solid var(--accent); outline-offset:3px;}
+
+  .project-links{display:flex; align-items:center; gap:20px; row-gap:16px; flex-wrap:wrap;}
+  .dash-btn{
+    position:relative;
+    display:inline-block; margin:0; background:transparent;
+    font-family:var(--font-mono); font-size:0.76rem; color:var(--heading);
+    border:none; border-bottom:1px solid var(--accent); padding:0 0 2px; white-space:nowrap;
+    cursor:pointer; transition:color .15s ease, transform .15s ease;
+  }
+  .dash-btn:hover{color:var(--accent-soft); transform:translateX(3px);}
+  .dash-btn:active{transform:translateX(1px) scale(0.97); transition-duration:.1s;}
+  .dash-btn:focus-visible{outline:1px solid var(--accent); outline-offset:3px;}
+  /* invisible hit-slop: keeps the small underlined-text look but gives
+     phones a real ~44px tap target around it */
+  .repo-link::before, .dash-btn::before{
+    content:""; position:absolute; top:-14px; bottom:-14px; left:-10px; right:-10px;
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .timeline-item{
+    display:grid; grid-template-columns:200px 1fr; gap:32px;
+    padding:28px 0; border-bottom:1px solid var(--border);
+  }
+  .timeline-item:first-child{padding-top:0;}
+  .timeline-item:last-child{border-bottom:none;}
+  .timeline-item .when{font-family:var(--font-mono); font-size:0.78rem; color:var(--accent-soft); position:relative; padding-left:16px;}
+  .timeline-item .when::before{
+    content:""; position:absolute; left:0; top:6px; width:7px; height:7px; border-radius:50%;
+    background:var(--accent); animation:pulseDot 2.4s ease-in-out infinite;
+  }
+  .timeline-item .where{color:var(--body); font-size:0.82rem; margin-top:6px;}
+  .timeline-item h3{font-size:1.15rem; margin-bottom:12px;}
+  .timeline-item ul{margin:0; padding-left:18px; color:var(--prose); font-size:1.02rem; line-height:1.7;}
+  .timeline-item li{margin-bottom:10px;}
+  .timeline-item li::marker{color:var(--accent);}
+  @media (max-width:680px){.timeline-item{grid-template-columns:1fr; gap:10px;}}
+
+  .edu-card{
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight);
+    padding:26px;
+    display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    transition:border-color .25s ease;
+  }
+  .edu-card:hover{border-color:rgba(232,232,236,0.35);}
+  .edu-card .gpa{font-family:var(--font-mono); font-size:2rem; color:var(--accent); font-weight:700; text-align:right;}
+  .edu-card .gpa small{display:block; font-size:0.62rem; color:var(--body); letter-spacing:0.08em; text-transform:uppercase; margin-top:4px;}
+
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-card{
+    background:var(--glass-bg);
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+    border:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight);
+    padding:26px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+    transition:border-color .25s ease;
+  }
+  .cert-card:hover{border-color:rgba(232,232,236,0.35);}
+  .cert-card h3{font-size:1.15rem;}
+  .cert-card .issuer{margin:8px 0 0; color:var(--prose); font-size:1rem;}
+  .cert-card .when{font-family:var(--font-mono); font-size:0.76rem; color:var(--accent-soft); display:block; margin-top:12px; letter-spacing:0.03em;}
+
+  /* ---------- DASHBOARD MODAL ---------- */
+  body.no-scroll{overflow:hidden;}
+  .dash-modal{position:fixed; inset:0; z-index:100; display:flex; align-items:center; justify-content:center; padding:24px;}
+  .dash-modal[hidden]{display:none;}
+  .dash-modal-backdrop{position:absolute; inset:0; background:rgba(6,6,6,0.78); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);}
+  .dash-modal-panel{
+    position:relative; z-index:1; width:100%; max-width:900px; max-height:88vh; overflow-y:auto;
+    background:var(--surface); border:1px solid var(--glass-border);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.7), inset 0 1px 0 var(--glass-highlight);
+    padding:34px 32px 32px;
+  }
+  .dash-modal-close{
+    position:absolute; top:14px; right:14px;
+    background:var(--glass-bg-strong); border:1px solid var(--glass-border); color:var(--heading);
+    width:44px; height:44px; font-family:var(--font-mono); font-size:0.9rem; cursor:pointer; line-height:1;
+  }
+  .dash-modal-close:hover{border-color:var(--accent); color:var(--accent-soft);}
+  .dash-modal-close:focus-visible{outline:1px solid var(--accent); outline-offset:2px;}
+  .dash-modal-head .file-id{display:block;}
+  .dash-modal-head h3{font-size:1.5rem; margin-top:8px; padding-right:60px;}
+  .dash-modal-head p{color:var(--prose); margin-top:12px; font-size:0.98rem; line-height:1.65; max-width:640px;}
+  .dash-modal-gallery{
+    margin-top:24px; padding-top:24px; border-top:1px solid var(--glass-border);
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px;
+  }
+  .dash-gallery-card{
+    background:var(--glass-bg); border:1px solid var(--glass-border); overflow:hidden;
+    cursor:pointer; text-align:left; padding:0; font:inherit; color:inherit; display:block; width:100%;
+    transition:border-color .2s ease, transform .2s var(--ease-spring);
+  }
+  .dash-gallery-card:hover{border-color:rgba(232,232,236,.35); transform:translateY(-3px);}
+  .dash-gallery-card:focus-visible{outline:1px solid var(--accent); outline-offset:2px;}
+  .dash-gallery-card img{display:block; width:100%; height:136px; object-fit:cover; object-position:top; background:#0d0d0d;}
+  .dash-gallery-card .cap{padding:12px 14px 14px;}
+  .dash-gallery-card .cap .name{font-family:var(--font-mono); font-size:0.76rem; color:var(--heading); letter-spacing:0.02em;}
+  .dash-gallery-card .cap .answers{font-size:0.82rem; color:var(--body); margin-top:6px; line-height:1.5;}
+  @media (max-width:640px){
+    .dash-modal{padding:10px;}
+    .dash-modal-panel{padding:26px 18px 24px; max-height:92vh;}
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{position:fixed; inset:0; z-index:110; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:32px; background:rgba(4,4,4,0.92); backdrop-filter:blur(4px);}
+  .lightbox[hidden]{display:none;}
+  .lightbox img{max-width:100%; max-height:76vh; border:1px solid var(--glass-border); box-shadow:0 30px 60px -20px rgba(0,0,0,.8);}
+  .lightbox-caption{font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-soft); margin-top:16px; text-align:center; max-width:80vw;}
+  .lightbox-close{
+    position:absolute; top:14px; right:14px;
+    background:var(--glass-bg-strong); border:1px solid var(--glass-border); color:var(--heading);
+    width:44px; height:44px; font-family:var(--font-mono); font-size:1rem; cursor:pointer; line-height:1;
+  }
+  .lightbox-close:hover{border-color:var(--accent); color:var(--accent-soft);}
+  .lightbox-close:focus-visible{outline:1px solid var(--accent); outline-offset:2px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--glass-bg);
+    backdrop-filter:blur(28px) saturate(180%);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    border:1px solid var(--glass-border);
+    box-shadow:inset 0 1px 0 var(--glass-highlight), 0 20px 40px -24px rgba(0,0,0,.6);
+    padding:52px;
+  }
+  .contact .eyebrow{margin-bottom:14px;}
+  .contact h2{font-size:clamp(1.7rem, 4vw, 2.5rem); max-width:560px; letter-spacing:-0.012em;}
+  .prompt{
+    font-family:var(--font-mono);
+    color:var(--body);
+    margin-top:22px;
+    font-size:0.88rem;
+  }
+  .prompt .path{color:var(--accent);}
+  .prompt .arg{color:var(--accent-soft);}
+  .prompt .val{color:var(--heading);}
+  .contact .cta-row{margin-top:34px;}
+  @media (max-width:640px){.contact{padding:34px 22px;}}
+
+  footer{
+    padding:32px 0 48px;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--border);
+  }
+  footer span{color:var(--body);}
+
+  /* ---------- MOBILE PASS ---------- */
+  /* Tighter section rhythm and slightly larger "fine print" labels —
+     the desktop sizes below ~12px get genuinely hard to read on a phone. */
+  @media (max-width:640px){
+    .hero{padding:64px 0 40px;}
+    section{padding:56px 0;}
+    .kpi-strip{margin-top:40px;}
+    .eyebrow{font-size:0.76rem;}
+    .kpi .num{font-size:1.5rem;}
+    .kpi .label{font-size:0.72rem;}
+    .ledger-row .k{font-size:0.76rem;}
+    .field .k{font-size:0.72rem;}
+    .chip{font-size:0.78rem; padding:7px 12px;}
+    .stack-tag{font-size:0.76rem; padding:7px 11px;}
+    .project-head .file-id{font-size:0.74rem;}
+    .skill-card h3{font-size:0.8rem;}
+    .contact .prompt{font-size:0.84rem; word-break:break-word;}
+  }
+</style>
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">MSA<span class="dot">_</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <a href="#certifications">Credentials</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">[ MENU ]</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-top:none; padding-top:96px;" id="heroSection">
+    <div class="spotlight" id="spotlight"></div>
+    <div class="wrap">
+      <span class="eyebrow load-in d1"><span class="status-dot"></span>Data Analyst · Hyderabad, India</span>
+      <h1 class="load-in d2">Mir Sufiyan<br>Ali</h1>
+      <span class="role mono load-in d3">open to Data Analyst &amp; BI roles</span>
+      <p class="tagline load-in d4">“I ground every finding in statistical testing before it reaches a dashboard.” <strong>Four end-to-end analytics builds</strong> across retail, healthcare, banking, and e-commerce — turning raw transactional data into validated, decision-ready insights with SQL Server, Python, and Power BI.</p>
+
+      <div class="query-line mono load-in d5" id="queryLine"></div>
+
+      <div class="cta-row load-in d5">
+        <a href="#projects" class="btn btn-solid">View Projects</a>
+        <a href="https://drive.google.com/file/d/1AhiPd37O0t5IE3BbXfoUf2E4T35FAUc7/view" target="_blank" rel="noopener" class="btn btn-outline">Resume</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+
+      <div class="kpi-strip load-in d6">
+        <div class="kpi"><div class="num tabular" data-count="9.02" data-suffix="/10">0</div><div class="label">CGPA</div></div>
+        <div class="kpi"><div class="num tabular" data-count="4" data-suffix="">0</div><div class="label">Analytics Projects</div></div>
+        <div class="kpi"><div class="num tabular" data-count="90" data-suffix="+">0</div><div class="label">SQL Queries Written</div></div>
+        <div class="kpi"><div class="num tabular" data-count="15.6" data-suffix="M+">0</div><div class="label">Records Analyzed</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>01 — About</span>
+        <h2>Analysis that ends in a decision</h2>
+      </div>
+      <div class="about-grid reveal">
+        <div>
+          <p>I'm a Computer Science (Data Science) student at Lords Institute of Engineering and Technology with hands-on experience in SQL Server (T-SQL), Python, and Power BI — turning raw transactional data into validated, decision-ready insights. My work spans inventory analytics in retail, financial performance in healthcare, customer behavior in banking, and freight risk in e-commerce.</p>
+          <p>The through-line: I ground every finding in statistical testing — t-tests, ANOVA, chi-square, Mann-Whitney U — before it reaches a dashboard. If a pattern can't survive a significance test, it doesn't make the recommendation.</p>
+        </div>
+        <div class="ledger">
+          <div class="ledger-row"><span class="k mono">Location</span><span class="v">Hyderabad, India</span></div>
+          <div class="ledger-row"><span class="k mono">Status</span><span class="v">Open to Data Analyst roles</span></div>
+          <div class="ledger-row"><span class="k mono">Education</span><span class="v">B.E. CS (Data Science), 2023–2027</span></div>
+          <div class="ledger-row"><span class="k mono">Email</span><span class="v">mirsufiyanali6s@gmail.com</span></div>
+          <div class="ledger-row"><span class="k mono">Phone</span><span class="v">+91 93908 22459</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>02 — Skills</span>
+        <h2>The toolkit behind the dashboards</h2>
+      </div>
+      <div class="skill-grid">
+        <div class="skill-card reveal">
+          <h3>Programming &amp; Querying</h3>
+          <div class="chip-row">
+            <span class="chip">SQL</span><span class="chip">T-SQL</span><span class="chip">Python</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay:.08s;">
+          <h3>Data Analysis &amp; ML</h3>
+          <div class="chip-row">
+            <span class="chip">EDA</span><span class="chip">Statistical Analysis</span><span class="chip">Feature Engineering</span>
+            <span class="chip">Data Cleaning</span><span class="chip">Anomaly Detection</span>
+            <span class="chip">Customer Segmentation</span><span class="chip">Pandas</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay:.16s;">
+          <h3>Visualization &amp; BI</h3>
+          <div class="chip-row">
+            <span class="chip">Power BI</span><span class="chip">Data Modeling</span>
+            <span class="chip">Dashboard Development</span><span class="chip">KPI Reporting</span>
+            <span class="chip">Excel</span><span class="chip">Matplotlib</span><span class="chip">Business Intelligence</span>
+          </div>
+        </div>
+        <div class="skill-card reveal" style="transition-delay:.24s;">
+          <h3>Databases, Tools &amp; Concepts</h3>
+          <div class="chip-row">
+            <span class="chip">SQL Server (SSMS)</span><span class="chip">Data Modeling</span><span class="chip">Star Schema</span>
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Jupyter Notebook</span><span class="chip">Google Colab</span>
+            <span class="chip">Stakeholder Communication</span><span class="chip">Requirements Gathering</span><span class="chip">Data Storytelling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>03 — Case Files</span>
+        <h2>Four datasets, four decisions</h2>
+        <p>Each project follows the same discipline: find the problem in the noise, validate it with a significance test, and hand back a call the business can make.</p>
+      </div>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div>
+            <span class="file-id mono">CASE 01 / RETAIL</span>
+            <h3>VendorIQ &amp; Inventory Analytics</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="field"><div class="k mono">Problem</div><div class="v">Vendor and inventory data was fragmented across systems, hiding where working capital was actually stuck and which vendors were quietly eroding margin.</div></div>
+          <div class="field"><div class="k mono">Approach</div><div class="v">Modeled 6 relational tables — 15.6M rows, 129 vendors, 268K products — into a star schema and ran 48 SQL business queries, then validated the patterns statistically in Python.</div></div>
+          <div class="field"><div class="k mono">Finding</div><div class="v finding">15 vendors (12% of the base) drive 37.73% of revenue while 7 vendors contribute just 0.02%; bulk orders of 10+ units cut unit cost by 32.6% (Mann–Whitney U, p &lt; 0.001); and $44.85M sits tied up in 901 high-value outlier SKUs.</div></div>
+          <div class="field"><div class="k mono">Deliverable</div><div class="v">3-page Power BI dashboard directing vendor-base consolidation and bulk-purchasing decisions.</div></div>
+          <div class="project-foot">
+            <div class="stack-row">
+              <span class="stack-tag">SQL Server (T-SQL)</span><span class="stack-tag">Python</span><span class="stack-tag">Power BI</span><span class="stack-tag">Star Schema</span>
+            </div>
+            <div class="project-links">
+              <a class="repo-link" href="https://github.com/mirsufiyanali6/VendorIQ-Inventory-Analysis" target="_blank" rel="noopener">GitHub ↗</a>
+              <button type="button" class="dash-btn" data-project="vendoriq">View Dashboards ↗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal" style="transition-delay:.06s;">
+        <div class="project-head">
+          <div>
+            <span class="file-id mono">CASE 02 / HEALTHCARE</span>
+            <h3>Healthcare Operations &amp; Financial Performance</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="field"><div class="k mono">Problem</div><div class="v">Hospital admission and billing records needed to be verified as trustworthy before any cost driver could go in front of stakeholders.</div></div>
+          <div class="field"><div class="k mono">Approach</div><div class="v">Cleaned and standardized 54,966 hospital admission records (534 duplicates removed) across 28 SQL business queries, then tested cost and stay-length drivers with t-test, ANOVA, and chi-square testing.</div></div>
+          <div class="field"><div class="k mono">Finding</div><div class="v finding">106 records carried negative billing — down to -$2,008 each — flagged as a data-quality defect, and near-uniform hospital/doctor distributions pointed to a synthetic rather than operational dataset.</div></div>
+          <div class="field"><div class="k mono">Deliverable</div><div class="v">~$1.40B billing dashboard, explicitly flagged to be read directionally rather than as a real hospital leaderboard, given the data-quality findings.</div></div>
+          <div class="project-foot">
+            <div class="stack-row">
+              <span class="stack-tag">SQL Server</span><span class="stack-tag">Python</span><span class="stack-tag">Power BI</span>
+            </div>
+            <div class="project-links">
+              <a class="repo-link" href="https://github.com/mirsufiyanali6/Healthcare-Operations-Financial-Performance-Analytics" target="_blank" rel="noopener">GitHub ↗</a>
+              <button type="button" class="dash-btn" data-project="healthcare">View Dashboards ↗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal" style="transition-delay:.12s;">
+        <div class="project-head">
+          <div>
+            <span class="file-id mono">CASE 03 / FINANCE</span>
+            <h3>Banking Intelligence: Customer &amp; Transaction Analytics</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="field"><div class="k mono">Problem</div><div class="v">The bank needed to know which factors actually drove customer value and channel risk, not just which ones correlated with them.</div></div>
+          <div class="field"><div class="k mono">Approach</div><div class="v">Segmented 10,000+ transactions across 100 customers and ran 18 SQL business queries, then tested candidate drivers with t-test, ANOVA, and chi-square testing.</div></div>
+          <div class="field"><div class="k mono">Finding</div><div class="v finding">67% of customers are Suspended or Inactive against only 33% Active in a $25.08M transaction book. Transaction frequency correlates near-perfectly with customer value (r = 0.99) while age barely does (r ≈ 0.06) — a correlation, not a claim of cause. ATM is the highest-failure channel at 5.34% vs. 3.95% for web.</div></div>
+          <div class="field"><div class="k mono">Deliverable</div><div class="v">3-page Power BI dashboard informing a frequency-based retention target and a channel-reliability fix.</div></div>
+          <div class="project-foot">
+            <div class="stack-row">
+              <span class="stack-tag">SQL Server</span><span class="stack-tag">Python</span><span class="stack-tag">Power BI</span>
+            </div>
+            <div class="project-links">
+              <a class="repo-link" href="https://github.com/mirsufiyanali6/Banking-Intelligence-Customer-Transaction-Analytics" target="_blank" rel="noopener">GitHub ↗</a>
+              <button type="button" class="dash-btn" data-project="banking">View Dashboards ↗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card reveal" style="transition-delay:.18s;">
+        <div class="project-head">
+          <div>
+            <span class="file-id mono">CASE 04 / E-COMMERCE</span>
+            <h3>Seller Concentration &amp; Freight Risk Analysis</h3>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="field"><div class="k mono">Problem</div><div class="v">A 100K-order marketplace needed to know how concentrated its seller risk really was, and how much freight was quietly eating into margin.</div></div>
+          <div class="field"><div class="k mono">Approach</div><div class="v">Modeled 9 relational tables across the marketplace and analyzed seller concentration, freight cost, and cross-category behavior with SQL Server, Python, and Power BI.</div></div>
+          <div class="field"><div class="k mono">Finding</div><div class="v finding">The top 10% of sellers generate 67.5% of revenue (the top 10 alone: 13.15%), while revenue growth had shifted into a -4.56% contraction. Cross-state shipments cost significantly more in freight than same-state (Welch's t-test, p &lt; 0.001), consuming 16.57% of item revenue — and only 1.0% of orders span more than one category.</div></div>
+          <div class="field"><div class="k mono">Deliverable</div><div class="v">5 Power BI dashboards translating seller and freight risk into freight-pricing and cross-sell recommendations.</div></div>
+          <div class="project-foot">
+            <div class="stack-row">
+              <span class="stack-tag">SQL Server</span><span class="stack-tag">Python</span><span class="stack-tag">Power BI</span>
+            </div>
+            <div class="project-links">
+              <a class="repo-link" href="https://github.com/mirsufiyanali6/Seller-Concentration-Freight-Risk-Analysis" target="_blank" rel="noopener">GitHub ↗</a>
+              <button type="button" class="dash-btn" data-project="seller">View Dashboards ↗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>04 — Experience</span>
+        <h2>Where the work has run</h2>
+      </div>
+
+      <div class="reveal">
+        <div class="timeline-item">
+          <div>
+            <div class="when">Jul – Aug 2025</div>
+            <div class="where">Manac Infotech · India</div>
+            <a class="repo-link" style="display:inline-block; margin-top:10px; font-size:0.7rem;" href="https://github.com/mirsufiyanali6/Manac-InfoTech-Internship-Project-" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+          <div>
+            <h3>Data Science Intern</h3>
+            <ul>
+              <li>Built a Python/Scikit-Learn ML pipeline (SVM, KNN) to detect water-meter tampering and non-technical losses from billing data, cutting false-positive tamper alerts from 35% to 12%.</li>
+              <li>Engineered 22 behavioral features — usage trend slope, rolling deltas, deviation ratios, tamper flags — from raw consumption data to generate calibrated fraud-risk scores per account.</li>
+              <li>Developed a Django + SQL Server dashboard (ChartJS) to rank high-risk accounts for field audits.</li>
+              <li>Validated flagged accounts against confirmed theft cases and presented the results to stakeholders.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>05 — Education</span>
+        <h2>Formal training</h2>
+      </div>
+      <div class="edu-card reveal">
+        <div>
+          <h3 style="font-size:1.2rem;">B.E. Computer Science (Data Science)</h3>
+          <p style="margin:8px 0 0; color:var(--prose); font-size:1rem;">Lords Institute of Engineering and Technology · 2023–2027</p>
+          <div class="chip-row" style="margin-top:16px;">
+            <span class="chip">Business Analytics</span><span class="chip">Machine Learning</span><span class="chip">Data Modeling</span><span class="chip">DBMS</span>
+            <span class="chip">Exploratory Data Analysis</span><span class="chip">Probability &amp; Statistics</span><span class="chip">Data Visualization</span><span class="chip">Data Warehousing</span>
+          </div>
+        </div>
+        <div class="gpa">9.02<small>CGPA / 10</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="status-dot"></span>06 — Certifications</span>
+        <h2>Credentials</h2>
+      </div>
+      <div class="cert-card reveal">
+        <div>
+          <h3>Google Advanced Data Analytics Professional Certificate</h3>
+          <p class="issuer">Google</p>
+          <span class="when mono">Apr – Aug 2026</span>
+        </div>
+        <a href="https://www.coursera.org/account/accomplishments/specialization/I6TGQMDLVYN4" target="_blank" rel="noopener" class="btn btn-outline">View Certificate ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact reveal">
+        <span class="eyebrow"><span class="status-dot"></span>07 — Contact</span>
+        <h2>Looking for an analyst who validates before they visualize?</h2>
+        <div class="prompt">
+          <div><span class="path">~/contact</span> <span class="arg">--role</span> <span class="val">"Data Analyst / BI"</span></div>
+          <div><span class="path">~/contact</span> <span class="arg">--email</span> <span class="val">mirsufiyanali6s@gmail.com</span></div>
+          <div><span class="path">~/contact</span> <span class="arg">--phone</span> <span class="val">+91 93908 22459</span></div>
+        </div>
+        <div class="cta-row">
+          <a href="mailto:mirsufiyanali6s@gmail.com" class="btn btn-solid">Email Me</a>
+          <a href="https://www.linkedin.com/in/mir-sufiyan-ali-a75376306/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+          <a href="https://github.com/mirsufiyanali6" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+          <a href="https://drive.google.com/file/d/1AhiPd37O0t5IE3BbXfoUf2E4T35FAUc7/view" target="_blank" rel="noopener" class="btn btn-outline">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="dash-modal" id="dashModal" role="dialog" aria-modal="true" aria-labelledby="dashModalTitle" hidden>
+  <div class="dash-modal-backdrop" data-dash-close></div>
+  <div class="dash-modal-panel">
+    <button type="button" class="dash-modal-close" data-dash-close aria-label="Close dashboard viewer">✕</button>
+    <div class="dash-modal-head">
+      <span class="file-id mono" id="dashModalEyebrow"></span>
+      <h3 id="dashModalTitle"></h3>
+      <p id="dashModalDesc"></p>
+    </div>
+    <div class="dash-modal-gallery" id="dashModalGallery"></div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Dashboard preview" hidden>
+  <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close preview">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
+<footer>
+  <span>© 2026 Mir Sufiyan Ali</span> · built with data, not lorem ipsum
+</footer>
+
+<script>
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // mobile nav toggle
+    var menuBtn = document.getElementById('menuBtn');
+    var navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', function(){
+      var open = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.textContent = open ? '[ CLOSE ]' : '[ MENU ]';
+    });
+    navLinks.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', false);
+        menuBtn.textContent = '[ MENU ]';
+      }
+    });
+
+    // scroll progress bar
+    var progressBar = document.getElementById('scrollProgress');
+    function updateProgress(){
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }
+    var progressTicking = false;
+    window.addEventListener('scroll', function(){
+      if(!progressTicking){
+        requestAnimationFrame(function(){ updateProgress(); progressTicking = false; });
+        progressTicking = true;
+      }
+    });
+    updateProgress();
+
+    // hero spotlight + subtle background parallax, mouse-driven
+    if(!reduced && window.matchMedia('(hover: hover)').matches){
+      var heroSection = document.getElementById('heroSection');
+      var spotlight = document.getElementById('spotlight');
+      heroSection.addEventListener('mousemove', function(e){
+        var r = heroSection.getBoundingClientRect();
+        var x = ((e.clientX - r.left) / r.width) * 100;
+        var y = ((e.clientY - r.top) / r.height) * 100;
+        spotlight.style.setProperty('--sx', x + '%');
+        spotlight.style.setProperty('--sy', y + '%');
+        spotlight.classList.add('active');
+      });
+      heroSection.addEventListener('mouseleave', function(){
+        spotlight.classList.remove('active');
+      });
+
+      window.addEventListener('mousemove', function(e){
+        var px = (e.clientX / window.innerWidth - 0.5) * 14;
+        var py = (e.clientY / window.innerHeight - 0.5) * 14;
+        document.body.style.setProperty('--mx', px + 'px');
+        document.body.style.setProperty('--my', py + 'px');
+      });
+    }
+
+    // typing query line
+    var line = document.getElementById('queryLine');
+    var full = "SELECT insight FROM raw_data WHERE p_value < 0.05;";
+    if(reduced){
+      line.textContent = full;
+    } else {
+      var i = 0;
+      function type(){
+        if(i <= full.length){
+          line.innerHTML = full.slice(0, i) + '<span class="caret"></span>';
+          i++;
+          setTimeout(type, 32);
+        }
+      }
+      setTimeout(type, 500);
+    }
+
+    // count-up KPIs
+    var counted = false;
+    function animateCount(el){
+      var raw = el.getAttribute('data-count');
+      var target = parseFloat(raw);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var decimals = raw.indexOf('.') !== -1 ? raw.split('.')[1].length : 0;
+      if(reduced){
+        el.textContent = raw + suffix;
+        return;
+      }
+      var start = null;
+      var duration = 900;
+      function step(ts){
+        if(!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var val = target * eased;
+        el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val)) + suffix;
+        if(progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    var kpiStrip = document.querySelector('.kpi-strip');
+    var kpiObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting && !counted){
+          counted = true;
+          document.querySelectorAll('.kpi .num').forEach(animateCount);
+        }
+      });
+    }, {threshold:0.4});
+    if(kpiStrip) kpiObserver.observe(kpiStrip);
+
+    // reveal on scroll
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){
+      if(reduced){ el.classList.add('in'); }
+      else{ revealObserver.observe(el); }
+    });
+  })();
+</script>
+
+<script>
+  // ---------------------------------------------------------------
+  // Centralized project/dashboard configuration.
+  // To add or replace a dashboard screenshot or link, edit this
+  // object only — nothing else in the page needs to change.
+  //   image: path to the PNG, relative to index.html
+  //   answers: one line on what business question that page answers
+  // ---------------------------------------------------------------
+  var PROJECT_DASHBOARDS = {
+    vendoriq: {
+      fileId: "CASE 01 / RETAIL",
+      title: "VendorIQ & Inventory Analytics",
+      description: "6-table star schema across 129 vendors and 268K products (15.6M rows), validated with 48 SQL business queries and Mann–Whitney U testing before reaching the dashboard.",
+      dashboards: [
+        { name: "Executive Overview", image: "dashboards/vendoriq/executive-overview.png", answers: "Top-line revenue, inventory value, active vendors, and turnover." },
+        { name: "Vendor & Procurement Analytics", image: "dashboards/vendoriq/vendor-procurement-analytics.png", answers: "Purchase cost trend, vendor spend concentration, and average price/quantity." },
+        { name: "Inventory & Product Analytics", image: "dashboards/vendoriq/inventory-product-analytics.png", answers: "Beginning/ending inventory value, top products by stock and sales, and vendor revenue share." }
+      ]
+    },
+    healthcare: {
+      fileId: "CASE 02 / HEALTHCARE",
+      title: "Healthcare Operations & Financial Performance Analytics",
+      description: "A ~$1.40B billing dashboard built on 54,966 admission records — read directionally, since the underlying dataset shows signs of being synthetic rather than real hospital data.",
+      dashboards: [
+        { name: "Billing & Operations Overview", image: "dashboards/healthcare/dashboard.png", answers: "One page, filterable by year, month, hospital, admission type, and insurer — doctors/hospitals/patients, average billing, average stay, revenue trend, top hospitals, insurance split, and test-result split." }
+      ]
+    },
+    banking: {
+      fileId: "CASE 03 / FINANCE",
+      title: "Banking Intelligence: Customer & Transaction Analytics",
+      description: "3-page Power BI suite covering a $25.08M transaction book across 100 customers, validated with t-test, ANOVA, and chi-square testing.",
+      dashboards: [
+        { name: "Executive Banking Overview", image: "dashboards/banking/executive-banking-overview.png", answers: "Top-line KPIs, monthly trend, channel/type/region value, and customer status." },
+        { name: "Customer & Account Analytics", image: "dashboards/banking/customer-account-analytics.png", answers: "Customer count, active rate, and region/status breakdowns — where the 67% Suspended/Inactive gap shows up." },
+        { name: "Transaction & Product Analysis", image: "dashboards/banking/transaction-product-analysis.png", answers: "Product-category performance, success rate, and channel/type mix, including the ATM vs. web failure gap." }
+      ]
+    },
+    seller: {
+      fileId: "CASE 04 / E-COMMERCE",
+      title: "Seller Concentration & Freight Risk Analysis",
+      description: "5 Power BI dashboards covering a 100K-order marketplace's seller concentration, freight cost, and cross-sell risk.",
+      dashboards: [
+        { name: "Marketplace Executive Overview", image: "dashboards/seller/marketplace-executive-overview.png", answers: "Revenue, order volume, and delivery performance at a glance." },
+        { name: "Seller Concentration & Dependency", image: "dashboards/seller/seller-concentration-dependency.png", answers: "Revenue concentration across the seller base." },
+        { name: "Freight & Logistics Risk", image: "dashboards/seller/freight-logistics-risk.png", answers: "Freight cost by distance, state, and price band." },
+        { name: "Payment & Installment Risk", image: "dashboards/seller/payment-installment-risk.png", answers: "Payment method mix and installment exposure." },
+        { name: "Cross-Sell & Growth", image: "dashboards/seller/cross-sell-growth.png", answers: "Category-spanning orders and the revenue growth trend." }
+      ]
+    }
+  };
+
+  (function(){
+    var modal = document.getElementById('dashModal');
+    var modalEyebrow = document.getElementById('dashModalEyebrow');
+    var modalTitle = document.getElementById('dashModalTitle');
+    var modalDesc = document.getElementById('dashModalDesc');
+    var modalGallery = document.getElementById('dashModalGallery');
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var lightboxCaption = document.getElementById('lightboxCaption');
+    var lastFocused = null;
+
+    function openModal(key){
+      var project = PROJECT_DASHBOARDS[key];
+      if(!project) return;
+      lastFocused = document.activeElement;
+
+      modalEyebrow.textContent = project.fileId;
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.description;
+
+      modalGallery.innerHTML = '';
+      project.dashboards.forEach(function(d){
+        var card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'dash-gallery-card';
+        card.setAttribute('aria-label', 'Open larger preview of ' + d.name);
+
+        var img = document.createElement('img');
+        img.src = d.image;
+        img.alt = d.name + ' — ' + project.title + ' Power BI dashboard screenshot';
+        img.loading = 'lazy';
+
+        var cap = document.createElement('div');
+        cap.className = 'cap';
+        var name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = d.name;
+        var answers = document.createElement('div');
+        answers.className = 'answers';
+        answers.textContent = d.answers;
+        cap.appendChild(name);
+        cap.appendChild(answers);
+
+        card.appendChild(img);
+        card.appendChild(cap);
+        card.addEventListener('click', function(){
+          openLightbox(d.image, d.name + ' — ' + project.title);
+        });
+        modalGallery.appendChild(card);
+      });
+
+      modal.hidden = false;
+      document.body.classList.add('no-scroll');
+      modal.querySelector('.dash-modal-close').focus();
+      document.addEventListener('keydown', onModalKeydown);
+    }
+
+    function closeModal(){
+      modal.hidden = true;
+      document.body.classList.remove('no-scroll');
+      document.removeEventListener('keydown', onModalKeydown);
+      if(lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    function onModalKeydown(e){
+      if(e.key === 'Escape'){ closeModal(); return; }
+      if(e.key === 'Tab'){
+        var focusable = modal.querySelectorAll('button, a[href]');
+        if(!focusable.length) return;
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    }
+
+    function openLightbox(src, caption){
+      lightboxImg.src = src;
+      lightboxImg.alt = caption;
+      lightboxCaption.textContent = caption;
+      lightbox.hidden = false;
+      document.addEventListener('keydown', onLightboxKeydown);
+    }
+    function closeLightbox(){
+      lightbox.hidden = true;
+      lightboxImg.src = '';
+      document.removeEventListener('keydown', onLightboxKeydown);
+    }
+    function onLightboxKeydown(e){
+      if(e.key === 'Escape') closeLightbox();
+    }
+
+    document.querySelectorAll('.dash-btn[data-project]').forEach(function(btn){
+      btn.addEventListener('click', function(){ openModal(btn.getAttribute('data-project')); });
+    });
+    modal.querySelectorAll('[data-dash-close]').forEach(function(el){
+      el.addEventListener('click', closeModal);
+    });
+    lightbox.querySelectorAll('[data-lightbox-close]').forEach(function(el){
+      el.addEventListener('click', closeLightbox);
+    });
+    lightbox.addEventListener('click', function(e){
+      if(e.target === lightbox) closeLightbox();
+    });
+  })();
+</script>
+</body>
+</html>
