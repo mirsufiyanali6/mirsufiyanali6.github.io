@@ -1,0 +1,121 @@
+% One-page layout version. Resume wording is unchanged.
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=0.35in,right=0.35in,top=0.16in,bottom=0.16in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{empty}
+\urlstyle{same}
+\raggedright
+\setlength{\tabcolsep}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pdfgentounicode=1
+
+% Reduced section whitespace only; normal line spacing is deliberately retained.
+\titleformat{\section}{\bfseries\scshape\raggedright\large}{}{0em}{}[\titlerule\vspace{1pt}]
+\titlespacing*{\section}{0pt}{2pt}{2pt}
+\setlist[itemize]{topsep=1pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\newcommand{\resumeItem}[1]{\item\small #1}
+\newcommand{\resumeSubheading}[4]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small #3} & \textit{\small #4} \\
+  \end{tabular*}}
+\newcommand{\resumeProjectHeading}[2]{%
+  \item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \small #1 & #2 \\
+  \end{tabular*}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in,label={},topsep=1pt,itemsep=1pt,parsep=0pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{-3pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.14in,topsep=1pt,itemsep=0pt,parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+\begin{document}
+
+\begin{center}
+  {\Huge \scshape Mir Sufiyan Ali}\\[-1pt]
+  \small Hyderabad, India\\[-1pt]
+  \small +91 9390822459 $|$
+  \href{mailto:mirsufiyanali6s@gmail.com}{mirsufiyanali6s@gmail.com} $|$
+  \href{https://www.linkedin.com/in/mir-sufiyan-ali-a75376306/}{\underline{LinkedIn}} $|$
+  \href{https://github.com/mirsufiyanali6}{\underline{GitHub}} $|$
+  \href{https://mirsufiyanali6.github.io/}{\underline{Portfolio}}
+\end{center}\vspace{-6pt}
+
+\section{Professional Summary}
+\small Data Analyst with hands-on experience in SQL Server (T-SQL), Python, and Power BI, turning raw transactional data into validated, decision-ready insights. Grounds every finding in statistical testing before it reaches a dashboard, and has delivered end-to-end analytics across finance, healthcare, E-commerce, and retail domains that directly informed business decisions.\vspace{-2pt}
+
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading{Lords Institute of Engineering and Technology}{2023 -- 2027}{Bachelor of Engineering in Computer Science (Data Science) $|$ CGPA: 9.02/10}{Hyderabad, India}
+\resumeSubHeadingListEnd
+
+\section{Relevant Coursework}
+\small
+\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l@{\extracolsep{\fill}}l}
+  \textbullet\ Business Analytics & \textbullet\ Machine Learning & \textbullet\ Data Modeling & \textbullet\ DBMS \\
+  \textbullet\ Exploratory Data Analysis & \textbullet\ Probability \& Statistics & \textbullet\ Data Visualization & \textbullet\ Data Warehousing \\
+\end{tabular*}\vspace{-2pt}
+
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading{Manac Infotech}{Jul -- Aug 2025 $|$ \href{https://github.com/mirsufiyanali6/Manac-InfoTech-Internship-Project-}{\underline{GitHub}}}{Data Science Intern}{India}
+  \resumeItemListStart
+    \resumeItem{Built a Python/Scikit-Learn ML pipeline (SVM, KNN) to detect water-meter tampering and non-technical losses from billing data, cutting false-positive tamper alerts from 35\% to 12\%.}
+    \resumeItem{Engineered 22 behavioral features (usage trend slope, rolling deltas, deviation ratios, tamper flags) from raw consumption data to generate calibrated fraud-risk scores per account.}
+    \resumeItem{Developed a Django + SQL Server dashboard (ChartJS) to rank high-risk accounts for field audits and validated flagged accounts against confirmed theft cases, presenting results to stakeholders.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading{\textbf{VendorIQ \& Inventory Analytics} $|$ \emph{SQL Server (T-SQL), Python, Power BI}}{\href{https://github.com/mirsufiyanali6/VendorIQ-Inventory-Analysis}{\underline{GitHub}}}
+  \resumeItemListStart
+    \resumeItem{Modeled 6 relational tables (15.6M rows, 129 vendors, 268K products) into a star schema and ran 48 SQL business queries, finding 15 vendors (12\% of the base) drive 37.73\% of revenue while 7 contribute just 0.02\% --- informing a vendor-base consolidation recommendation.}
+    \resumeItem{Statistically validated that bulk orders (10+ units) cut unit cost 32.6\% (\$9.85 vs. \$14.62, Mann--Whitney U, $p < 0.001$) and flagged \$44.85M tied up in 901 high-value outlier SKUs (9.33\% of catalog), directing bulk-purchasing and inventory-reduction decisions in a 3-page Power BI dashboard.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading{\textbf{Healthcare Operations \& Financial Performance Analytics} $|$ \emph{SQL Server, Python, Power BI}}{\href{https://github.com/mirsufiyanali6/Healthcare-Operations-Financial-Performance-Analytics}{\underline{GitHub}}}
+  \resumeItemListStart
+    \resumeItem{Cleaned and standardized 54,966 hospital admission records (534 duplicates removed) across 28 SQL business queries; used t-test, ANOVA, and chi-square testing to rule out age, admission type, and gender as significant drivers of billing or length of stay, preventing leadership from chasing false cost signals.}
+    \resumeItem{Caught 106 records with negative billing (down to -\$2,008 each) as a data-quality defect and flagged near-uniform hospital/doctor distributions as evidence the dataset was synthetic --- recommending the \$1.40B billing dashboard be read as directional, not a real hospital leaderboard.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading{\textbf{Banking Intelligence: Customer \& Transaction Analytics} $|$ \emph{SQL Server, Python, Power BI}}{\href{https://github.com/mirsufiyanali6/Banking-Intelligence-Customer-Transaction-Analytics}{\underline{GitHub}}}
+  \resumeItemListStart
+    \resumeItem{Surfaced that 67\% of the customer base is Suspended or Inactive against only 33\% Active --- the central retention risk in a \$25.08M transaction book --- then used t-test, ANOVA, and chi-square testing to rule out debit/credit split, channel, and customer status as the cause.}
+    \resumeItem{Found transaction frequency near-perfectly predicts customer value ($r = 0.99$) while age does not ($r \approx 0.06$), and identified ATM as the highest-failure channel (5.34\% vs. 3.95\% web) across 18 SQL queries --- informing a frequency-based retention target and a channel-reliability fix.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading{\textbf{Seller Concentration \& Freight Risk Analysis} $|$ \emph{SQL Server, Python, Power BI}}{\href{https://github.com/mirsufiyanali6/Seller-Concentration-Freight-Risk-Analysis}{\underline{GitHub}}}
+  \resumeItemListStart
+    \resumeItem{Modeled 9 relational tables across a 100K-order marketplace and found the top 10\% of sellers generate 67.5\% of revenue (top 10 alone: 13.15\%) while revenue growth had turned from a steady 2017 climb into a -4.56\% contraction --- flagging seller concentration as a near-term risk, not just a structural one.}
+    \resumeItem{Confirmed cross-state shipments cost significantly more in freight than same-state (Welch's t-test, $p < 0.001$), consuming 16.57\% of item revenue, and found only 1.0\% of orders span more than one category despite repeat cross-category buyers --- directing freight-pricing and cross-sell recommendations across 5 dashboards.}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in,label={}]
+  \item\small \textbf{Programming \& Querying}: SQL, T-SQL, Python \\
+  \textbf{Data Analysis \& ML}: EDA, Statistical Analysis, Feature Engineering, Data Cleaning, Anomaly Detection, Customer Segmentation, Pandas \\
+  \textbf{Visualization \& BI}: Power BI, Data Modeling, Dashboard Development, KPI Reporting, Excel (Pivot Tables, VLOOKUP), Matplotlib, Business Intelligence \\
+  \textbf{Databases, Tools \& Concepts}: SQL Server (SSMS), Data Modeling (Star Schema), Git, GitHub, Jupyter Notebook, Google Colab, Stakeholder Communication, Requirements Gathering, Data Storytelling
+\end{itemize}\vspace{-2pt}
+
+\section{Certifications}
+\resumeSubHeadingListStart
+  \resumeSubheading{Google Advanced Data Analytics Professional Certificate}{Apr -- Aug 2026 $|$ \href{https://www.coursera.org/account/accomplishments/specialization/I6TGQMDLVYN4}{\underline{Certificate}}}{Google}{}
+\resumeSubHeadingListEnd
+
+\end{document}
